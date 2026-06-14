@@ -12,6 +12,7 @@ import aadd.podcast.repositorio.RepositorioException;
 import aadd.podcast.repositorio.RepositorioPodcastAdHoc;
 import aadd.podcast.servicio.FactoriaServicios;
 import aadd.podcast.servicio.IServicioPodcast;
+import aadd.podcast.servicio.PodcastDuracionMedia;
 import aadd.podcast.servicio.PodcastResumen;
 
 public class Programa {
@@ -54,10 +55,17 @@ public class Programa {
 		System.out.println("Podcasts en la categoría 'Categoría':");
 		podcastsCategoria.stream().forEach(p -> System.out.println(p.toString()));
 
+		// Recuperar podcasts con duración media
+		System.out.println("");
+		List<PodcastDuracionMedia> podcastsDuracionMedia = repositorio.recuperarPodcastsConDuracionMedia();
+		System.out.println("Podcasts con duración media:");
+		podcastsDuracionMedia.stream().forEach(p -> System.out.println(p.toString()));
+
 		// Exportar podcast a JSON
 		System.out.println("");
 		String rutaArchivo = "podcasts.json";
 		servicioPodcast.exportarPodcastJSON(id1, rutaArchivo);
+
 	}
 
 }
