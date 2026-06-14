@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bson.BsonType;
 import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.bson.codecs.pojo.annotations.BsonRepresentation;
 
 import aadd.podcast.repositorio.Identificable;
@@ -87,18 +88,19 @@ public class Podcast implements Identificable {
 		this.episodios = episodios;
 	}
 
-	@Override
-	public String toString() {
-		return "Podcast [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", autores=" + autores
-				+ ", categoria=" + categoria + ", fechaUltimoEpisodio=" + fechaUltimoEpisodio + ", episodios="
-				+ episodios + "]";
-	}
-
+	@BsonIgnore
 	public int getNumEpisodios() {
 		if (episodios == null) {
 			return 0;
 		}
 		return episodios.size();
+	}
+
+	@Override
+	public String toString() {
+		return "Podcast [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", autores=" + autores
+				+ ", categoria=" + categoria + ", fechaUltimoEpisodio=" + fechaUltimoEpisodio + ", episodios="
+				+ episodios + "]";
 	}
 
 }

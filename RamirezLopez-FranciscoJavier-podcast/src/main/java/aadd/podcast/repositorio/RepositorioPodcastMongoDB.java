@@ -38,7 +38,7 @@ public class RepositorioPodcastMongoDB extends RepositorioMongoDB<Podcast> {
 		CodecRegistry defacultCodecRegistry = CodecRegistries
 				.fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
 
-		collection = database.getCollection("coches", Podcast.class).withCodecRegistry(defacultCodecRegistry);
+		collection = database.getCollection("podcasts", Podcast.class).withCodecRegistry(defacultCodecRegistry);
 
 	}
 

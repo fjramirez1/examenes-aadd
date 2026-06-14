@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import aadd.podcast.modelo.Episodio;
 import aadd.podcast.modelo.Podcast;
 import aadd.podcast.repositorio.EntidadNoEncontrada;
@@ -11,6 +13,7 @@ import aadd.podcast.repositorio.FactoriaRepositorios;
 import aadd.podcast.repositorio.Repositorio;
 import aadd.podcast.repositorio.RepositorioException;
 
+@ApplicationScoped
 public class ServicioPodcast implements IServicioPodcast {
 
 	private Repositorio<Podcast, String> repositorio = FactoriaRepositorios.getRepositorio(Podcast.class);

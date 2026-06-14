@@ -20,6 +20,12 @@ public class Programa {
 		IServicioPodcast servicioPodcast = FactoriaServicios.getServicio(IServicioPodcast.class);
 		RepositorioPodcastAdHoc repositorio = FactoriaRepositorios.getRepositorio(Podcast.class);
 
+		// Eliminar todos los podcasts existentes
+		List<Podcast> podcastsExistentes = repositorio.getAll();
+		for (Podcast podcast : podcastsExistentes) {
+			repositorio.delete(podcast);
+		}
+
 		List<String> autores = new ArrayList<>();
 		autores.add("Autor1");
 		autores.add("Autor2");

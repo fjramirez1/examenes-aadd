@@ -16,7 +16,7 @@
 			<h2>Añadir episodio en el podcast</h2>
 
 			<p:panel header="Nuevo episodio"
-				rendered="#{not empty anadirEpisodioBean.podcast}">
+				rendered="#{not empty listaPodcastsBean.podcastSeleccionado}">
 
 				<p:panelGrid columns="2" layout="grid"
 					styleClass="ui-panelgrid-blank">
@@ -42,8 +42,6 @@
 					<p:outputLabel for="descripcion" value="Descripcion:" />
 					<p:inputText id="descripcion"
 						value="#{anadirEpisodioBean.nuevoEpisodioDTO.descripcion}" />
-
-
 
 				</p:panelGrid>
 
