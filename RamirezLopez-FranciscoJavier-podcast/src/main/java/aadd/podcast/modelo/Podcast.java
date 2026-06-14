@@ -3,6 +3,8 @@ package aadd.podcast.modelo;
 import java.util.Date;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
+
 import org.bson.BsonType;
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonIgnore;
@@ -89,6 +91,7 @@ public class Podcast implements Identificable {
 	}
 
 	@BsonIgnore
+	@JsonbTransient
 	public int getNumEpisodios() {
 		if (episodios == null) {
 			return 0;
