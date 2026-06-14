@@ -82,6 +82,14 @@ public class ServicioPodcast implements IServicioPodcast {
 
 		Episodio episodio = new Episodio(numEpisodio, titulo, fechaPublicacion, duracionMinutos, descripcion);
 
+		if (podcast.getEpisodios() != null) {
+			for (Episodio e : podcast.getEpisodios()) {
+				if (e.getNumEpisodio() == numEpisodio) {
+					throw new IllegalArgumentException("numEpisodio: ya existe un episodio con ese número");
+				}
+			}
+		}
+
 		List<Episodio> episodios;
 
 		if (podcast.getEpisodios() == null) {

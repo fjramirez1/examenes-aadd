@@ -27,7 +27,7 @@
 
 					<p:outputLabel for="titulo" value="Titulo:" />
 					<p:inputText id="titulo"
-						value="#{anadirEpisodioBean.nuevoEpisodio.titulo}" />
+						value="#{anadirEpisodioBean.nuevoEpisodio.titulo}" maxlength="50" />
 
 					<p:outputLabel for="fechaPublicacion" value="Fecha Publicacion:" />
 					<p:datePicker id="fechaPublicacion"
@@ -40,7 +40,8 @@
 
 					<p:outputLabel for="descripcion" value="Descripcion:" />
 					<p:inputText id="descripcion"
-						value="#{anadirEpisodioBean.nuevoEpisodio.descripcion}" />
+						value="#{anadirEpisodioBean.nuevoEpisodio.descripcion}"
+						maxlength="100" />
 
 				</p:panelGrid>
 
