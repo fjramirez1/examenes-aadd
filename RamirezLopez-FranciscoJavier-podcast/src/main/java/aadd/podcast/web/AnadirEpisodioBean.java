@@ -29,22 +29,27 @@ public class AnadirEpisodioBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		nuevoEpisodio = new Episodio();
 		podcastId = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("podcastId");
 
 	}
 
-	public void guardarEpisodio() {
+	public String guardarEpisodio() {
 		try {
 			servicioPodcast.nuevoEpisodio(this.podcastId, nuevoEpisodio.getNumEpisodio(), nuevoEpisodio.getTitulo(),
 					nuevoEpisodio.getFechaPublicacion(), nuevoEpisodio.getDuracionMinutos(),
 					nuevoEpisodio.getDescripcion());
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("podcastId");
+			return "listaPodcasts?faces-redirect=true";
 		} catch (IllegalArgumentException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Datos no válidos", e.getMessage()));
+			return null;
 		} catch (RepositorioException | EntidadNoEncontrada e) {
 			e.printStackTrace();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-					"No se pudo guardar el episodio del podcast."));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo guardar el episodio."));
+			return null;
 		}
 	}
 

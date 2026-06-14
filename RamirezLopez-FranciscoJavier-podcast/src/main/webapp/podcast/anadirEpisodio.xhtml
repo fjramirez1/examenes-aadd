@@ -16,32 +16,31 @@
 			<h2>Añadir episodio en el podcast</h2>
 
 			<p:panel header="Nuevo episodio"
-				rendered="#{not empty listaPodcastsBean.podcastSeleccionado}">
+				rendered="#{not empty anadirEpisodioBean.podcastId}">
 
 				<p:panelGrid columns="2" layout="grid"
 					styleClass="ui-panelgrid-blank">
 
 					<p:outputLabel for="numEpisodio" value="Numero de episodio:" />
-					<p:inputText id="numEpisodio"
-						value="#{anadirEpisodioBean.nuevoEpisodioDTO.numEpisodio}" />
+					<p:inputNumber id="numEpisodio"
+						value="#{anadirEpisodioBean.nuevoEpisodio.numEpisodio}" min="1" />
 
 					<p:outputLabel for="titulo" value="Titulo:" />
 					<p:inputText id="titulo"
-						value="#{anadirEpisodioBean.nuevoEpisodioDTO.titulo}" />
+						value="#{anadirEpisodioBean.nuevoEpisodio.titulo}" />
 
 					<p:outputLabel for="fechaPublicacion" value="Fecha Publicacion:" />
-					<p:inputText id="fechaPublicacion"
-						value="#{anadirEpisodioBean.nuevoEpisodioDTO.fechaPublicacion}" />
-
+					<p:datePicker id="fechaPublicacion"
+						value="#{anadirEpisodioBean.nuevoEpisodio.fechaPublicacion}" />
 
 					<p:outputLabel for="duracionMinutos" value="Duracion en minutos:" />
-					<p:inputText id="duracionMinutos"
-						value="#{anadirEpisodioBean.nuevoEpisodioDTO.duracionMinutos}" />
-
+					<p:inputNumber id="duracionMinutos"
+						value="#{anadirEpisodioBean.nuevoEpisodio.duracionMinutos}"
+						min="1" />
 
 					<p:outputLabel for="descripcion" value="Descripcion:" />
 					<p:inputText id="descripcion"
-						value="#{anadirEpisodioBean.nuevoEpisodioDTO.descripcion}" />
+						value="#{anadirEpisodioBean.nuevoEpisodio.descripcion}" />
 
 				</p:panelGrid>
 
