@@ -1,5 +1,6 @@
 package aadd.podcast.servicio.test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,7 @@ import aadd.podcast.servicio.PodcastResumen;
 
 public class Programa {
 
-	public static void main(String[] args) throws RepositorioException, EntidadNoEncontrada {
+	public static void main(String[] args) throws RepositorioException, EntidadNoEncontrada, IOException {
 
 		IServicioPodcast servicioPodcast = FactoriaServicios.getServicio(IServicioPodcast.class);
 		RepositorioPodcastAdHoc repositorio = FactoriaRepositorios.getRepositorio(Podcast.class);
@@ -52,6 +53,11 @@ public class Programa {
 		List<Podcast> podcastsCategoria = repositorio.buscarPodcastsPorCategoria("Categoría");
 		System.out.println("Podcasts en la categoría 'Categoría':");
 		podcastsCategoria.stream().forEach(p -> System.out.println(p.toString()));
+
+		// Exportar podcast a JSON
+		System.out.println("");
+		String rutaArchivo = "podcasts.json";
+		servicioPodcast.exportarPodcastJSON(id1, rutaArchivo);
 	}
 
 }

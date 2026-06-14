@@ -1,5 +1,6 @@
 package aadd.podcast.servicio;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -15,5 +16,8 @@ public interface IServicioPodcast {
 			String descripcion) throws RepositorioException, EntidadNoEncontrada;
 
 	List<PodcastResumen> recuperarPodcasts() throws RepositorioException;
+
+	void exportarPodcastJSON(String idPodcast, String rutaFichero)
+			throws RepositorioException, EntidadNoEncontrada, IOException;
 
 }

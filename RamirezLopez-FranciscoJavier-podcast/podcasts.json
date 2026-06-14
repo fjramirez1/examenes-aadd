@@ -1,0 +1,30 @@
+
+{
+    "autores": [
+        "Autor1",
+        "Autor2",
+        "Autor3"
+    ],
+    "categoria": "Categoría",
+    "descripcion": "Podcast de prueba 1",
+    "episodios": [
+        {
+            "descripcion": "Descripción del episodio 1",
+            "duracion_minutos": 30,
+            "fecha_publicacion": "2026-06-13T15:55:41.29Z[UTC]",
+            "num_episodio": 1,
+            "titulo": "Episodio 1"
+        },
+        {
+            "descripcion": "Descripción del episodio 2",
+            "duracion_minutos": 45,
+            "fecha_publicacion": "2026-06-14T15:55:41.305Z[UTC]",
+            "num_episodio": 2,
+            "titulo": "Episodio 2"
+        }
+    ],
+    "fecha_ultimo_episodio": "2026-06-14T15:55:41.305Z[UTC]",
+    "id": "6a2ecefd9f0e720e52f8e434",
+    "num_episodios": 2,
+    "titulo": "Nuevo1"
+}

@@ -1,10 +1,19 @@
 package aadd.podcast.servicio;
 
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+import javax.json.bind.JsonbConfig;
+import javax.json.bind.config.PropertyNamingStrategy;
 
 import aadd.podcast.modelo.Episodio;
 import aadd.podcast.modelo.Podcast;
@@ -93,6 +102,7 @@ public class ServicioPodcast implements IServicioPodcast {
 
 	@Override
 	public List<PodcastResumen> recuperarPodcasts() throws RepositorioException {
+
 		List<PodcastResumen> resumenes = new ArrayList<>();
 		List<Podcast> podcasts = repositorio.getAll();
 		PodcastResumen resumen;
@@ -110,6 +120,34 @@ public class ServicioPodcast implements IServicioPodcast {
 		}
 
 		return resumenes;
+	}
+
+	@Override
+	public void exportarPodcastJSON(String idPodcast, String rutaFichero)
+			throws RepositorioException, EntidadNoEncontrada, IOException {
+
+		if (idPodcast == null || idPodcast.isEmpty()) {
+			throw new IllegalArgumentException("idPodcast: no debe ser nulo ni vacío");
+		}
+
+		if (rutaFichero == null || rutaFichero.isEmpty()) {
+			throw new IllegalArgumentException("rutaFichero: no debe ser nula ni vacía");
+		}
+
+		Podcast podcast = repositorio.getById(idPodcast);
+
+		Path ruta = Path.of(rutaFichero);
+
+		if (ruta.getParent() != null) {
+			Files.createDirectories(ruta.getParent());
+		}
+
+		JsonbConfig config = new JsonbConfig().withFormatting(true).withNullValues(true)
+				.withPropertyNamingStrategy(PropertyNamingStrategy.LOWER_CASE_WITH_UNDERSCORES);
+		Jsonb jsonb = JsonbBuilder.create(config);
+		Writer writer = Files.newBufferedWriter(ruta, StandardCharsets.UTF_8);
+
+		jsonb.toJson(podcast, writer);
 	}
 
 }
