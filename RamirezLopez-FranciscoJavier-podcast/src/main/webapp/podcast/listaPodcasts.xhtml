@@ -1,0 +1,78 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="title">Podcasts</ui:define>
+
+	<ui:define name="content">
+
+		<h:panelGroup>
+
+			<h2>Aquí puedes consultar la lista de podcasts</h2>
+
+			<h:form id="formPodcasts">
+
+				<p:growl id="msgs" showDetail="true" life="4000" />
+
+
+
+				<p:dataTable id="tablaPodcasts"
+					value="#{listaPodcastsBean.podcasts}" var="p"
+					emptyMessage="No hay podcasts que mostrar." rows="10"
+					paginator="true">
+
+					<p:column headerText="Identificador">
+						<h:outputText value="#{p.id}" />
+					</p:column>
+
+					<p:column headerText="Titulo">
+						<h:outputText value="#{p.titulo}" />
+					</p:column>
+
+					<p:column headerText="Autores">
+						<h:outputText value="#{p.autores}" />
+					</p:column>
+
+					<p:column headerText="Categoria">
+						<h:outputText value="#{p.categoria}" />
+					</p:column>
+
+					<p:column headerText="Descripcion">
+						<h:outputText value="#{p.descripcion}" />
+					</p:column>
+
+					<p:column headerText="Fecha ultimo episodio">
+						<h:outputText value="#{p.fechaUltimoEpisodio}" />
+					</p:column>
+
+					<p:column headerText="Numero total de episodios">
+						<h:outputText value="#{p.numEpisodios}" />
+					</p:column>
+
+
+					<p:column headerText="Acciones">
+
+						<p:commandButton value="Añadir episodio" icon="pi pi-check"
+							action="#{listaPodcastsBean.anadirEpisodio}">
+
+							<f:setPropertyActionListener
+								target="#{listaPodcastsBean.podcastSeleccionada}" value="#{p}" />
+
+						</p:commandButton>
+
+
+					</p:column>
+
+				</p:dataTable>
+
+			</h:form>
+
+		</h:panelGroup>
+
+	</ui:define>
+
+</ui:composition>
