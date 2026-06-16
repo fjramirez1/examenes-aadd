@@ -12,6 +12,8 @@ import aadd.concesionario.modelo.Coche;
  */
 public interface RepositorioConcesionarioAdHoc extends RepositorioString<Coche> {
 
-	List<Coche> getCochesConMantenimientoCercano(LocalDate fecha);
+	List<Coche> getCochesConMantenimientoCercano(LocalDate fecha) throws RepositorioException;
+
+	List<Coche> getCochesByMatricula(String matricula) throws RepositorioException;
 
 }

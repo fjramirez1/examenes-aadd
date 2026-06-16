@@ -1,7 +1,6 @@
 package aadd.concesionario.servicio;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 public class CocheResumen {
 	private String idCoche;
@@ -10,13 +9,13 @@ public class CocheResumen {
 	private LocalDate fechaCompra;
 	private String nombreContacto;
 	private String emailContacto;
-	private Optional<LocalDate> fechaUltimoMantenimiento;
+	private LocalDate fechaUltimoMantenimiento;
 
 	public CocheResumen() {
 	}
 
 	public CocheResumen(String idCoche, String matricula, String modelo, LocalDate fechaCompra, String nombreContacto,
-			String emailContacto, Optional<LocalDate> fechaUltimoMantenimiento) {
+			String emailContacto, LocalDate fechaUltimoMantenimiento) {
 		this.idCoche = idCoche;
 		this.matricula = matricula;
 		this.modelo = modelo;
@@ -74,11 +73,11 @@ public class CocheResumen {
 		this.emailContacto = emailContacto;
 	}
 
-	public Optional<LocalDate> getFechaUltimoMantenimiento() {
+	public LocalDate getFechaUltimoMantenimiento() {
 		return fechaUltimoMantenimiento;
 	}
 
-	public void setFechaUltimoMantenimiento(Optional<LocalDate> fechaUltimoMantenimiento) {
+	public void setFechaUltimoMantenimiento(LocalDate fechaUltimoMantenimiento) {
 		this.fechaUltimoMantenimiento = fechaUltimoMantenimiento;
 	}
 

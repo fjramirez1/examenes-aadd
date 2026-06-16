@@ -3,7 +3,6 @@ package aadd.concesionario.servicio;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import aadd.concesionario.modelo.Coche;
 import aadd.concesionario.modelo.Contacto;
@@ -95,23 +94,28 @@ public class ServicioConcesionario implements IServicioConcesionario {
 	}
 
 	@Override
-	public List<CocheResumen> getCochesConMantenimientoCercano(Optional<LocalDate> fecha) throws RepositorioException {
+	public List<CocheResumen> getCochesConMantenimientoCercano(LocalDate fecha) throws RepositorioException {
 
 		List<Coche> coches;
 		List<CocheResumen> fichas = new ArrayList<>();
 
-		if (fecha.isPresent()) {
-			coches = repositorio.getCochesConMantenimientoCercano(fecha.get());
+		if (fecha != null) {
+			coches = repositorio.getCochesConMantenimientoCercano(fecha);
 		} else {
 			coches = repositorio.getAll();
 		}
 
 		for (Coche c : coches) {
 			CocheResumen ficha = new CocheResumen(c.getId(), c.getMatricula(), c.getModelo(), c.getFechaCompra(),
-					c.getContacto().getNombre(), c.getContacto().getEmail(),
-					Optional.of(c.getFechaUltimoMantenimiento()));
+					c.getContacto().getNombre(), c.getContacto().getEmail(), c.getFechaUltimoMantenimiento());
 			fichas.add(ficha);
 		}
 		return fichas;
+	}
+
+	@Override
+	public void exportarCocheJSON(String matricula, String ruta) throws RepositorioException {
+		List<Coche> cochesByMatricula = repositorio.getCochesByMatricula(matricula);
+
 	}
 }
