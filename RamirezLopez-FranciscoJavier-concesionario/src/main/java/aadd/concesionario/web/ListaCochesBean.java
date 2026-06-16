@@ -10,7 +10,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import aadd.concesionario.modelo.Coche;
 import aadd.concesionario.repositorio.RepositorioException;
 import aadd.concesionario.servicio.CocheResumen;
 import aadd.concesionario.servicio.IServicioConcesionario;
@@ -26,7 +25,7 @@ public class ListaCochesBean implements Serializable {
 
 	private List<CocheResumen> coches;
 
-	private Coche cocheSeleccionado;
+	private CocheResumen cocheSeleccionado;
 
 	private LocalDate fechaFiltro;
 
@@ -55,7 +54,7 @@ public class ListaCochesBean implements Serializable {
 
 	public String verDetalle() {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cocheDetalleId",
-				cocheSeleccionado.getId());
+				cocheSeleccionado.getIdCoche());
 
 		return "verCoche?faces-redirect=true";
 	}
@@ -68,7 +67,7 @@ public class ListaCochesBean implements Serializable {
 		this.coches = coches;
 	}
 
-	public Coche getCocheSeleccionado() {
+	public CocheResumen getCocheSeleccionado() {
 		return cocheSeleccionado;
 	}
 
@@ -80,7 +79,7 @@ public class ListaCochesBean implements Serializable {
 		this.fechaFiltro = fechaFiltro;
 	}
 
-	public void setCocheSeleccionado(Coche cocheSeleccionado) {
+	public void setCocheSeleccionado(CocheResumen cocheSeleccionado) {
 		this.cocheSeleccionado = cocheSeleccionado;
 	}
 
