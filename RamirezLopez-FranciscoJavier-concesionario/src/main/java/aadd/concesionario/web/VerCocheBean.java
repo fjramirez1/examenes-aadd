@@ -29,7 +29,7 @@ public class VerCocheBean implements Serializable {
 		String id = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get("cocheDetalleId");
 		try {
-			servicioConcesionario.getCocheById(id);
+			coche = servicioConcesionario.getCocheById(id);
 		} catch (RepositorioException | EntidadNoEncontrada e) {
 			e.printStackTrace();
 		}
