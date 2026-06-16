@@ -1,0 +1,82 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Detalle del Coche</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+
+			<p:panel header="Detalles del coche">
+
+				<p>
+					<strong>Matrícula:</strong><br /> #{verCocheBean.coche.matricula}
+				</p>
+
+				<p>
+					<strong>Modelo:</strong><br /> #{verCocheBean.coche.modelo}
+				</p>
+
+				<p>
+					<strong>Fecha de compra:</strong><br />
+					#{verCocheBean.coche.fechaCompra}
+				</p>
+
+				<p>
+					<strong>Nombre del contacto:</strong><br />
+					#{verCocheBean.coche.nombreContacto}
+				</p>
+
+				<p>
+					<strong>Teléfono del contacto:</strong><br />
+					#{verCocheBean.coche.contacto.telefono}
+				</p>
+
+				<p>
+					<strong>Email del contacto:</strong><br />
+					#{verCocheBean.coche.contacto.email}
+				</p>
+
+				<p:dataTable id="tablaMantenimientos"
+					value="#{verCocheBean.coche.mantenimientos}" var="m"
+					emptyMessage="No hay mantenimientos que mostrar." rows="10"
+					paginator="true">
+
+					<p:column headerText="Fecha">
+						<h:outputText value="#{m.fecha}" />
+					</p:column>
+
+					<p:column headerText="Kilometraje">
+						<h:outputText value="#{m.kilometros}" />
+					</p:column>
+
+					<p:column headerText="Cambio de aceite">
+						<h:outputText value="#{m.cambioAceite ? 'Sí' : 'No'}" />
+					</p:column>
+
+					<p:column headerText="Cambio de líquido de frenos">
+						<h:outputText value="#{m.cambioLiquidoFrenos ? 'Sí' : 'No'}" />
+					</p:column>
+
+					<p:column headerText="Cambio de filtros">
+						<h:outputText value="#{m.cambioFiltros ? 'Sí' : 'No'}" />
+					</p:column>
+
+					<p:column headerText="Descripción">
+						<h:outputText value="#{m.descripcion}" />
+					</p:column>
+
+				</p:dataTable>
+
+				<p:commandButton value="Volver" icon="pi pi-arrow-left"
+					onclick="window.history.back();" type="button" />
+
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

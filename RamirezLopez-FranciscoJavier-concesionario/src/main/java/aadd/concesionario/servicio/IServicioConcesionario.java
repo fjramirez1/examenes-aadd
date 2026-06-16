@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+import aadd.concesionario.modelo.Coche;
 import aadd.concesionario.repositorio.EntidadNoEncontrada;
 import aadd.concesionario.repositorio.RepositorioException;
 
@@ -19,5 +20,9 @@ public interface IServicioConcesionario {
 	List<CocheResumen> getCochesConMantenimientoCercano(LocalDate fecha) throws RepositorioException;
 
 	void exportarCocheJSON(String matricula, String ruta) throws RepositorioException, IOException;
+
+	List<CocheResumen> getCoches() throws RepositorioException;
+
+	Coche getCocheById(String id) throws RepositorioException, EntidadNoEncontrada;
 
 }

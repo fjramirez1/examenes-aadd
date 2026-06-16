@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -24,6 +25,7 @@ import aadd.concesionario.repositorio.FactoriaRepositorios;
 import aadd.concesionario.repositorio.RepositorioConcesionarioAdHoc;
 import aadd.concesionario.repositorio.RepositorioException;
 
+@ApplicationScoped
 public class ServicioConcesionario implements IServicioConcesionario {
 
 	private RepositorioConcesionarioAdHoc repositorio = FactoriaRepositorios.getRepositorio(Coche.class);
@@ -179,5 +181,22 @@ public class ServicioConcesionario implements IServicioConcesionario {
 		builder.add("mantenimientos", crearMantenimientosJSON(coche.getMantenimientos()));
 
 		return builder.build();
+	}
+
+	@Override
+	public List<CocheResumen> getCoches() throws RepositorioException {
+		List<CocheResumen> fichas = new ArrayList<>();
+
+		for (Coche c : repositorio.getAll()) {
+			CocheResumen ficha = new CocheResumen(c.getId(), c.getMatricula(), c.getModelo(), c.getFechaCompra(),
+					c.getContacto().getNombre(), c.getContacto().getEmail(), c.getFechaUltimoMantenimiento());
+			fichas.add(ficha);
+		}
+		return fichas;
+	}
+
+	@Override
+	public Coche getCocheById(String id) throws RepositorioException, EntidadNoEncontrada {
+		return repositorio.getById(id);
 	}
 }

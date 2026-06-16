@@ -1,0 +1,76 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="title">Coches</ui:define>
+
+	<ui:define name="content">
+
+		<h:panelGroup>
+
+			<h2>Aquí puedes consultar la lista de coches</h2>
+
+			<h:form id="formCoches">
+
+				<p:growl id="msgs" showDetail="true" life="4000" />
+
+				<p:panel
+					header="Filtro por coches que tengan mantenimiento cercano a la siguiente fecha:">
+					<p:outputLabel for="fechaFiltro" value="Fecha:" />
+					<p:datePicker id="fechaFiltro"
+						value="#{listaCochesBean.fechaFiltro}" />
+				</p:panel>
+
+				<p:commandButton value="Buscar" icon="pi pi-search"
+					action="#{listaCochesBean.filtrar}" update="tablaCoches, msgs" />
+
+				<p:dataTable id="tablaCoches" value="#{listaCochesBean.coches}"
+					var="c" emptyMessage="No hay coches que mostrar." rows="10"
+					paginator="true">
+
+					<p:column headerText="Matrícula">
+						<h:outputText value="#{c.matricula}" />
+					</p:column>
+
+					<p:column headerText="Modelo">
+						<h:outputText value="#{c.modelo}" />
+					</p:column>
+
+					<p:column headerText="Fecha de compra">
+						<h:outputText value="#{c.fechaCompra}" />
+					</p:column>
+
+					<p:column headerText="Nombre del contacto">
+						<h:outputText value="#{c.nombreContacto}" />
+					</p:column>
+
+					<p:column headerText="Email del contacto">
+						<h:outputText value="#{c.emailContacto}" />
+					</p:column>
+
+					<p:column headerText="Fecha de la última revisión">
+						<h:outputText value="#{c.fechaUltimoMantenimiento}" />
+					</p:column>
+
+					<p:column headerText="Acciones">
+						<p:commandButton icon="pi pi-eye" tooltip="Ver detalle"
+							action="#{listaCochesBean.verDetalle}" ajax="false">
+							<f:setPropertyActionListener
+								target="#{listaCochesBean.cocheSeleccionado}" value="#{c}" />
+						</p:commandButton>
+
+					</p:column>
+
+				</p:dataTable>
+
+			</h:form>
+
+		</h:panelGroup>
+
+	</ui:define>
+
+</ui:composition>
