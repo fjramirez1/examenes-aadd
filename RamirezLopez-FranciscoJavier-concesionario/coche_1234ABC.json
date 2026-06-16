@@ -1,0 +1,28 @@
+
+{
+    "id": "6a311cc6b516be4911ffd589",
+    "matricula": "1234ABC",
+    "modelo": "Toyota Corolla",
+    "fechaCompra": "2020-05-15",
+    "fechaUltimoMantenimiento": "2023-03-15",
+    "mantenimientos": [
+        {
+            "fecha": "2023-01-10",
+            "kilometros": 15000,
+            "cambioAceite": true,
+            "cambioLiquidoFrenos": false,
+            "cambioFiltros": true,
+            "descripcion": "Cambio de aceite y filtros",
+            "precio": 200.0
+        },
+        {
+            "fecha": "2023-03-15",
+            "kilometros": 18000,
+            "cambioAceite": false,
+            "cambioLiquidoFrenos": true,
+            "cambioFiltros": true,
+            "descripcion": "Cambio de líquido de frenos y filtros",
+            "precio": 300.0
+        }
+    ]
+}

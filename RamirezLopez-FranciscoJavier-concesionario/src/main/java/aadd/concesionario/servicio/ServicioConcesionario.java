@@ -1,8 +1,20 @@
 package aadd.concesionario.servicio;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
+import javax.json.stream.JsonGenerator;
+import javax.json.stream.JsonGeneratorFactory;
 
 import aadd.concesionario.modelo.Coche;
 import aadd.concesionario.modelo.Contacto;
@@ -114,8 +126,58 @@ public class ServicioConcesionario implements IServicioConcesionario {
 	}
 
 	@Override
-	public void exportarCocheJSON(String matricula, String ruta) throws RepositorioException {
+	public void exportarCocheJSON(String matricula, String ruta) throws RepositorioException, IOException {
+
 		List<Coche> cochesByMatricula = repositorio.getCochesByMatricula(matricula);
 
+		if (cochesByMatricula.isEmpty()) {
+			throw new RepositorioException("No existe ningún coche con la matrícula: " + matricula);
+		}
+
+		Coche coche = cochesByMatricula.get(0);
+
+		JsonObject cocheJSON = crearCocheJSON(coche);
+
+		// Almacenamiento en disco
+		HashMap<String, Boolean> config = new HashMap<String, Boolean>();
+		config.put(JsonGenerator.PRETTY_PRINTING, true);
+		JsonGeneratorFactory factoriaGeneradores = Json.createGeneratorFactory(config);
+
+		JsonGenerator generador = factoriaGeneradores.createGenerator(new FileWriter(ruta));
+		generador.write(cocheJSON);
+		generador.close();
+	}
+
+	private static JsonObject crearMantenimientoJSON(Mantenimiento m) {
+		return Json.createObjectBuilder().add("fecha", m.getFecha().toString()).add("kilometros", m.getKilometros())
+				.add("cambioAceite", m.isCambioAceite()).add("cambioLiquidoFrenos", m.isCambioLiquidoFrenos())
+				.add("cambioFiltros", m.isCambioFiltros()).add("descripcion", m.getDescripcion())
+				.add("precio", m.getPrecio()).build();
+	}
+
+	private static JsonArray crearMantenimientosJSON(List<Mantenimiento> mantenimientos) {
+		JsonArrayBuilder builder = Json.createArrayBuilder();
+		if (mantenimientos != null) {
+			for (Mantenimiento m : mantenimientos) {
+				builder.add(crearMantenimientoJSON(m));
+			}
+		}
+		return builder.build();
+	}
+
+	private static JsonObject crearCocheJSON(Coche coche) {
+		JsonObjectBuilder builder = Json.createObjectBuilder().add("id", coche.getId())
+				.add("matricula", coche.getMatricula()).add("modelo", coche.getModelo())
+				.add("fechaCompra", coche.getFechaCompra().toString());
+
+		if (coche.getFechaUltimoMantenimiento() != null) {
+			builder.add("fechaUltimoMantenimiento", coche.getFechaUltimoMantenimiento().toString());
+		} else {
+			builder.add("fechaUltimoMantenimiento", JsonValue.NULL);
+		}
+
+		builder.add("mantenimientos", crearMantenimientosJSON(coche.getMantenimientos()));
+
+		return builder.build();
 	}
 }

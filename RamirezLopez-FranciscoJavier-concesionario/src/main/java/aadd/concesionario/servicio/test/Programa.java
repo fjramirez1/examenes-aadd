@@ -1,5 +1,6 @@
 package aadd.concesionario.servicio.test;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import aadd.concesionario.servicio.IServicioConcesionario;
 
 public class Programa {
 
-	public static void main(String[] args) throws RepositorioException, EntidadNoEncontrada {
+	public static void main(String[] args) throws RepositorioException, EntidadNoEncontrada, IOException {
 
 		IServicioConcesionario servicio = FactoriaServicios.getServicio(IServicioConcesionario.class);
 		RepositorioConcesionarioAdHoc repositorio = FactoriaRepositorios.getRepositorio(Coche.class);
@@ -52,5 +53,7 @@ public class Programa {
 		for (CocheResumen ficha : fichas2) {
 			System.out.println(ficha.toString());
 		}
+		
+		servicio.exportarCocheJSON("1234ABC", "coche_1234ABC.json");
 	}
 }

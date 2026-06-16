@@ -1,5 +1,6 @@
 package aadd.concesionario.servicio;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,6 +18,6 @@ public interface IServicioConcesionario {
 
 	List<CocheResumen> getCochesConMantenimientoCercano(LocalDate fecha) throws RepositorioException;
 
-	void exportarCocheJSON(String matricula, String ruta) throws RepositorioException;
+	void exportarCocheJSON(String matricula, String ruta) throws RepositorioException, IOException;
 
 }
