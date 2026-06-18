@@ -54,7 +54,7 @@ public class AnadirRevisionBean implements Serializable {
 	}
 
 	public String cancelar() {
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("podcastId");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("animal");
 
 		return "listaAnimales?faces-redirect=true";
 	}

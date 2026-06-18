@@ -55,7 +55,8 @@
 					<p:column headerText="Acciones">
 
 						<p:commandButton value="Añadir revisión"
-							action="#{listaAnimalesBean.anadirRevision}">
+							action="#{listaAnimalesBean.anadirRevision}"
+							update=":formRevisión">
 
 							<f:setPropertyActionListener
 								target="#{listaAnimalesBean.animalSeleccionado}" value="#{a}" />
