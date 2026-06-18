@@ -12,7 +12,7 @@ import javax.inject.Named;
 import aadd.podcast.modelo.Episodio;
 import aadd.podcast.repositorio.EntidadNoEncontrada;
 import aadd.podcast.repositorio.RepositorioException;
-import aadd.podcast.servicio.ServicioPodcast;
+import aadd.podcast.servicio.IServicioPodcast;
 
 @Named
 @ViewScoped
@@ -21,7 +21,7 @@ public class AnadirEpisodioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private ServicioPodcast servicioPodcast;
+	private IServicioPodcast servicioPodcast;
 
 	private String podcastId;
 

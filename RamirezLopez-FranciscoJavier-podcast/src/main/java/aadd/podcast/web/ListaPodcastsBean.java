@@ -11,7 +11,7 @@ import javax.inject.Named;
 
 import aadd.podcast.repositorio.RepositorioException;
 import aadd.podcast.servicio.PodcastResumen;
-import aadd.podcast.servicio.ServicioPodcast;
+import aadd.podcast.servicio.IServicioPodcast;
 
 @Named
 @ViewScoped
@@ -20,7 +20,7 @@ public class ListaPodcastsBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private ServicioPodcast servicioPodcast;
+	private IServicioPodcast servicioPodcast;
 
 	private PodcastResumen podcastSeleccionado;
 
@@ -46,14 +46,6 @@ public class ListaPodcastsBean implements Serializable {
 			return "anadirEpisodio?faces-redirect=true";
 		}
 		return null;
-	}
-
-	public ServicioPodcast getServicioPodcast() {
-		return servicioPodcast;
-	}
-
-	public void setServicioPodcast(ServicioPodcast servicioPodcast) {
-		this.servicioPodcast = servicioPodcast;
 	}
 
 	public PodcastResumen getPodcastSeleccionado() {

@@ -13,7 +13,7 @@ import aadd.refugio.modelo.Revision;
 import aadd.refugio.repositorio.EntidadNoEncontrada;
 import aadd.refugio.repositorio.RepositorioException;
 import aadd.refugio.servicio.AnimalResumen;
-import aadd.refugio.servicio.ServicioRefugio;
+import aadd.refugio.servicio.IServicioRefugio;
 
 @Named
 @ViewScoped
@@ -22,7 +22,7 @@ public class AnadirRevisionBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private ServicioRefugio servicioRefugio;
+	private IServicioRefugio servicioRefugio;
 
 	private AnimalResumen animalSeleccionado;
 

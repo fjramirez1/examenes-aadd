@@ -102,18 +102,7 @@ public class ServicioRefugio implements IServicioRefugio {
 			animales = repositorio.buscarAnimalesNoAdoptadosConAntiguedadMinima(anyos);
 		}
 
-		List<AnimalResumen> animalesResumen = new ArrayList<>();
-		AnimalResumen animalResumen;
-		for (Animal animal : animales) {
-			animalResumen = new AnimalResumen();
-			animalResumen.setAdopcion(animal.getAdopcion() == null ? false : true);
-			animalResumen.setEspecie(animal.getEspecie());
-			animalResumen.setFechaEntrada(animal.getFechaEntrada());
-			animalResumen.setId(animal.getId());
-			animalResumen.setNombre(animal.getNombre());
-			animalesResumen.add(animalResumen);
-		}
-		return animalesResumen;
+		return convertirAResumen(animales);
 	}
 
 	@Override
@@ -144,8 +133,11 @@ public class ServicioRefugio implements IServicioRefugio {
 	@Override
 	public List<AnimalResumen> getAnimales() throws RepositorioException {
 		List<Animal> animales = repositorio.getAll();
-		List<AnimalResumen> animalesResumen = new ArrayList<>();
+		return convertirAResumen(animales);
+	}
 
+	private List<AnimalResumen> convertirAResumen(List<Animal> animales) {
+		List<AnimalResumen> animalesResumen = new ArrayList<>();
 		AnimalResumen animalResumen;
 		for (Animal animal : animales) {
 			animalResumen = new AnimalResumen();
