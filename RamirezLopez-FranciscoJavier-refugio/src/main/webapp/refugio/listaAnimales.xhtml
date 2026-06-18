@@ -1,0 +1,75 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="title">Animales</ui:define>
+
+	<ui:define name="content">
+
+		<h:panelGroup>
+
+			<h2>Aquí puedes consultar la lista de animales</h2>
+
+			<h:form id="formAnimales">
+
+				<p:growl id="msgs" showDetail="true" life="4000" />
+
+				<p:panel
+					header="Filtro por tiempo en años que llevan en el refugio:">
+					<p:outputLabel for="anyos" value="Número de años:" />
+					<p:inputNumber id="anyos" value="#{listaAnimalesBean.anyosFiltro}" />
+				</p:panel>
+
+				<p:commandButton value="Buscar" icon="pi pi-search"
+					action="#{listaAnimalesBean.filtrar}" update="tablaAnimales, msgs" />
+
+				<p:dataTable id="tablaAnimales"
+					value="#{listaAnimalesBean.animales}" var="a"
+					emptyMessage="No hay animales que mostrar." rows="10"
+					paginator="true">
+
+					<p:column headerText="Identificador">
+						<h:outputText value="#{a.id}" />
+					</p:column>
+
+					<p:column headerText="Nombre">
+						<h:outputText value="#{a.nombre}" />
+					</p:column>
+
+					<p:column headerText="Especie">
+						<h:outputText value="#{a.especie}" />
+					</p:column>
+
+					<p:column headerText="Fecha de entrada">
+						<h:outputText value="#{a.fechaEntrada}" />
+					</p:column>
+
+					<p:column headerText="Adoptado">
+						<h:outputText value="#{a.adopcion ? 'Sí' : 'No'}" />
+					</p:column>
+
+					<p:column headerText="Acciones">
+
+						<p:commandButton value="Añadir revisión"
+							action="#{listaAnimalesBean.anadirRevision}">
+
+							<f:setPropertyActionListener
+								target="#{listaAnimalesBean.animalSeleccionado}" value="#{a}" />
+
+						</p:commandButton>
+
+					</p:column>
+
+				</p:dataTable>
+
+			</h:form>
+
+		</h:panelGroup>
+
+	</ui:define>
+
+</ui:composition>

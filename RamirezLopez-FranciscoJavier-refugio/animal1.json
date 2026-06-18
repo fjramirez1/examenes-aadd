@@ -1,0 +1,30 @@
+
+{
+    "adopcion": {
+        "fecha_adopcion": "2026-05-18T13:59:10.152",
+        "nombre_adoptante": "Javi",
+        "telefono": "123456789"
+    },
+    "edad_entrada": 4,
+    "especie": "Perro",
+    "fecha_entrada": "2025-05-18T13:59:10.041",
+    "id": "6a33dd8ececec36dc94ebccd",
+    "nombre": "Animal1",
+    "revisiones": [
+        {
+            "fecha": "2025-10-18T13:59:10.105",
+            "observaciones": "Todo correcto",
+            "peso": 15.0
+        },
+        {
+            "fecha": "2026-02-18T13:59:10.125",
+            "observaciones": "Todo correcto",
+            "peso": 15.0
+        },
+        {
+            "fecha": "2026-04-18T13:59:10.132",
+            "observaciones": "Todo correcto",
+            "peso": 15.0
+        }
+    ]
+}

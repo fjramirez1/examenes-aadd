@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="animal">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="revision" type="tipoRevision"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="adopcion" type="tipoAdopcion"
+					minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:string" use="required" />
+			<xs:attribute name="nombre" type="xs:string"
+				use="required" />
+			<xs:attribute name="especie" type="xs:string"
+				use="required" />
+			<xs:attribute name="edadEntrada" type="xs:int"
+				use="required" />
+			<xs:attribute name="fechaEntrada" type="xs:date"
+				use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="tipoRevision">
+		<xs:attribute name="fecha" type="xs:date" use="required" />
+		<xs:attribute name="observaciones" type="xs:string"
+			use="required" />
+		<xs:attribute name="peso" type="xs:float" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="tipoAdopcion">
+		<xs:attribute name="fechaAdopcion" type="xs:date"
+			use="required" />
+		<xs:attribute name="nombreAdoptante" type="xs:string"
+			use="required" />
+		<xs:attribute name="telefono" type="xs:string"
+			use="required" />
+	</xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<animal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="animal.xsd" id="A_015" nombre="Luna"
+	especie="perro" edadEntrada="24" fechaEntrada="2025-02-01">
+
+	<revision fecha="2025-02-07"
+		observaciones="Buen estado de salud. Vacunación completa" peso="18.5" />
+
+	<adopcion fechaAdopcion="2025-03-19"
+		nombreAdoptante="Ana Ruiz Ruiz" telefono="666777888" />
+
+</animal>    

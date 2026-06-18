@@ -59,14 +59,6 @@ public class AnadirEpisodioBean implements Serializable {
 		return "listaPodcasts?faces-redirect=true";
 	}
 
-	public ServicioPodcast getServicioPodcast() {
-		return servicioPodcast;
-	}
-
-	public void setServicioPodcast(ServicioPodcast servicioPodcast) {
-		this.servicioPodcast = servicioPodcast;
-	}
-
 	public String getPodcastId() {
 		return podcastId;
 	}

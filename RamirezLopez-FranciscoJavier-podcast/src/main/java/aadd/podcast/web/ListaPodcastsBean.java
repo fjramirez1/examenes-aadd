@@ -43,9 +43,9 @@ public class ListaPodcastsBean implements Serializable {
 		if (podcastSeleccionado != null) {
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("podcastId",
 					podcastSeleccionado.getId());
+			return "anadirEpisodio?faces-redirect=true";
 		}
-
-		return "anadirEpisodio?faces-redirect=true";
+		return null;
 	}
 
 	public ServicioPodcast getServicioPodcast() {
